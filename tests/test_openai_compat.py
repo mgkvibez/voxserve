@@ -108,3 +108,11 @@ def test_speed_scales_duration():
     a = client.post("/v1/audio/speech", json={"input": "one two three four five", "speed": 1.0})
     b = client.post("/v1/audio/speech", json={"input": "one two three four five", "speed": 2.0})
     assert len(b.content) < len(a.content)
+
+
+def test_health_reports_engine_status():
+    client = make_client()
+    body = client.get("/health").json()
+    assert body["engine"] == "stub"
+    assert body["model_ready"] is True
+    assert body["voices"] == 4

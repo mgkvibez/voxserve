@@ -6,6 +6,14 @@ from typing import Protocol, runtime_checkable
 import numpy as np
 
 
+class EngineError(RuntimeError):
+    """Raised when synthesis fails; carries an HTTP status code."""
+
+    def __init__(self, message: str, status: int = 500):
+        super().__init__(message)
+        self.status = status
+
+
 @runtime_checkable
 class TTSEngine(Protocol):
     name: str
@@ -18,6 +26,6 @@ class TTSEngine(Protocol):
         """Return (float32 mono samples, sample_rate)."""
         ...
 
-
-class EngineError(RuntimeError):
-    """Raised when synthesis fails or the engine is not ready."""
+    def status(self) -> dict:
+        """Report readiness for /health: {'engine', 'model_ready', 'voices', 'detail?'}."""
+        ...

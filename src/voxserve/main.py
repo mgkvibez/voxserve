@@ -37,11 +37,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/health")
     def health():
-        return {
-            "status": "ok",
-            "engine": getattr(engine, "name", "unknown"),
-            "version": __version__,
-        }
+        status = engine.status()
+        status.update({"status": "ok", "version": __version__})
+        return status
 
     @app.get("/")
     def root():
@@ -59,14 +57,6 @@ def _build_engine(settings: Settings):
     from .engines.kokoro import select_engine
 
     return select_engine(settings)
-
-
-def serve():
-    """Console entrypoint: `voxserve`."""
-    import uvicorn
-
-    settings = Settings()
-    uvicorn.run(create_app(settings), host=settings.host, port=settings.port)
 
 
 # Module-level app for `uvicorn voxserve.main:app`.

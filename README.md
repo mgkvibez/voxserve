@@ -38,8 +38,8 @@ or from source:
 
 ```bash
 pip install -e ".[kokoro]"
-python scripts/pull_models.py        # one-time, ~330 MB
-python -m uvicorn voxserve.main:app --port 8000
+voxserve pull                       # one-time: kokoro-v1.0.onnx + voices-v1.0.bin (~340 MB)
+voxserve serve --port 8000
 ```
 
 Tested voices ship by default, including `nf_dora` (en-NG). `GET /v1/voices` lists them all; `GET /v1/models` keeps OpenAI clients happy.
@@ -49,6 +49,7 @@ Tested voices ship by default, including `nf_dora` (en-NG). `GET /v1/voices` lis
 | Env var | Default | Meaning |
 |---|---|---|
 | `VOXSERVE_ENGINE` | `auto` | `auto` / `kokoro` / `stub` |
+| `VOXSERVE_PORT` | `8000` | HTTP port |
 | `VOXSERVE_MODEL_DIR` | `models` | where the ONNX files live |
 | `VOXSERVE_API_KEY` | *(unset)* | if set, requires `Authorization: Bearer <key>` |
 | `VOXSERVE_DEFAULT_VOICE` | `af_heart` | fallback voice |
@@ -63,4 +64,4 @@ MIT. Use it in whatever you want, including commercial products.
 
 ## Status
 
-Early. The OpenAI contract and test suite are stable; the Kokoro engine path is being hardened on real low-end hardware right now. Star/watch to catch the launch.
+Early. The OpenAI contract and test suite are stable (18 tests). The Kokoro path is verified against kokoro-onnx 0.6.1 and ships proper 503s with the fix in the message when the model is missing. The Docker image is not yet published to a registry — build it from this repo until the 1.0 release. Star/watch to catch the launch.
