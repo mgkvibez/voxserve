@@ -25,10 +25,13 @@ class StubEngine:
     def voices(self) -> list[dict[str, str]]:
         return _VOICES
 
+    def status(self) -> dict:
+        return {"engine": self.name, "model_ready": True, "voices": len(_VOICES)}
+
     def synthesize(self, text: str, voice: str, speed: float = 1.0) -> tuple[np.ndarray, int]:
         if voice not in {v["id"] for v in _VOICES}:
-            raise EngineError(f"unknown voice: {voice}")
-        # 100 ms tone per character word, capped — deterministic, fast, silent-ish.
+            raise EngineError(f"unknown voice: {voice} (see /v1/voices)", status=400)
+        # 50 ms tone per word, capped — deterministic, fast, quiet.
         n_words = max(1, len(text.split()))
         duration = min(0.05 * n_words, 5.0) / max(speed, 0.25)
         t = np.linspace(0, duration, int(_SAMPLE_RATE * duration), endpoint=False)

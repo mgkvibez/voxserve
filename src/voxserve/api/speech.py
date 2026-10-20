@@ -29,7 +29,7 @@ def register(app) -> None:
         try:
             samples, sr = engine.synthesize(body.input, body.voice, body.speed)
         except EngineError as e:
-            raise HTTPException(400, detail=str(e)) from e
+            raise HTTPException(e.status, detail=str(e)) from e
         elapsed_ms = (time.perf_counter() - started) * 1000
 
         if body.response_format == "wav":

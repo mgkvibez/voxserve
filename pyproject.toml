@@ -17,7 +17,7 @@ kokoro = ["kokoro-onnx>=0.2"]
 dev = ["pytest>=8", "httpx>=0.27"]
 
 [project.scripts]
-voxserve = "voxserve.main:serve"
+voxserve = "voxserve.cli:main"
 
 [build-system]
 requires = ["hatchling"]
