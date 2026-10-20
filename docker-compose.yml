@@ -1,0 +1,12 @@
+services:
+  voxserve:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - VOXSERVE_ENGINE=auto
+      # - VOXSERVE_API_KEY=change-me
+    volumes:
+      - voxserve-models:/app/models
+volumes:
+  voxserve-models:
