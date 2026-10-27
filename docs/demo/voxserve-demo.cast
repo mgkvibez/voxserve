@@ -1,0 +1,4 @@
+{"version": 2, "width": 80, "height": 24, "timestamp": 1793129011, "env": {"SHELL": null, "TERM": "xterm"}}
+[0.006025, "o", "$ voxserve serve --port 8321 &\r\n"]
+[0.308849, "o", "  ... engine: kokoro | model_ready: true (GET /health)\r\n\r\n$ curl -s localhost:8321/v1/voices | python3 -c \"import json,sys; print(len(json.load(sys.stdin)[\\\"data\\\"]), \\\"voices\\\")\"\r\n54 voices\r\n\r\n$ time curl -s localhost:8321/v1/audio/speech \\\r\n    -d \"{\\\"model\\\":\\\"kokoro\\\",\\\"input\\\":\\\"Hello from voxserve\\\",\\\"voice\\\":\\\"af_heart\\\"}\" \\\r\n    -o hello.wav\r\n"]
+[1.811597, "o", "\r\nreal 0m1.08s\r\n\r\n$ python3 -c \"import wave; w=wave.open(\\\"hello.wav\\\"); print(w.getframerate(), \\\"Hz,\\\", round(w.getnframes()/w.getframerate(),2), \\\"seconds\")\"\r\n24000 Hz, 1.52 seconds  ← zero GPU, zero API key, OpenAI-compatible\r\n"]
