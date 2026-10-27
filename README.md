@@ -42,7 +42,7 @@ voxserve pull                       # one-time: kokoro-v1.0.onnx + voices-v1.0.b
 voxserve serve --port 8000
 ```
 
-Tested voices ship by default, including `nf_dora` (en-NG). `GET /v1/voices` lists them all; `GET /v1/models` keeps OpenAI clients happy.
+All 54 Kokoro v1.0 voices ship by default (American, British, Spanish, French, Hindi, Italian, Japanese, Portuguese, Mandarin). `GET /v1/voices` lists them all; `GET /v1/models` keeps OpenAI clients happy.
 
 ## Configuration
 

@@ -15,7 +15,7 @@ _VOICES = [
     {"id": "af_heart", "name": "Heart", "language": "en-US"},
     {"id": "am_michael", "name": "Michael", "language": "en-US"},
     {"id": "bf_emma", "name": "Emma", "language": "en-GB"},
-    {"id": "nf_dora", "name": "Dora", "language": "en-NG"},
+    {"id": "bm_george", "name": "George", "language": "en-GB"},
 ]
 
 
