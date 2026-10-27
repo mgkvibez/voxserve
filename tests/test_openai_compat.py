@@ -79,7 +79,7 @@ def test_voices_endpoint_lists_voices():
     assert resp.status_code == 200
     ids = [v["id"] for v in resp.json()["data"]]
     assert "af_heart" in ids
-    assert "nf_dora" in ids  # the Nigerian voice ships by default
+    assert "bm_george" in ids
 
 
 def test_health():

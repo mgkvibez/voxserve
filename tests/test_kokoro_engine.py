@@ -56,7 +56,8 @@ def test_partial_model_still_503():
 def test_lang_mapping():
     assert lang_for("af_heart") == "en-us"
     assert lang_for("bf_emma") == "en-gb"
-    assert lang_for("nf_dora") == "en-us"
+    assert lang_for("bm_george") == "en-gb"
+    assert lang_for("ef_dora") == "en-us"  # es voice still synthesizes via en-us phonemizer
 
 
 def test_stub_engine_selected_by_setting():
