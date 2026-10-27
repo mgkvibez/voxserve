@@ -26,6 +26,15 @@ Every serious voice model assumes you have a GPU — or it rents you one by the 
 3. **Small footprint** — target: < 400 MB RAM in steady state, sub-second latency for short utterances on one vCPU.
 4. **Sane defaults** — WAV out of the box with zero system deps (stdlib encoder, no ffmpeg needed).
 
+## Demo
+
+A real session, 1 CPU core, no GPU (recorded with asciinema, rendered as SVG):
+
+<p align="center"><img src="docs/demo/voxserve-demo.svg" alt="voxserve terminal demo" width="720"></p>
+
+Measured on a single CPU core after `voxserve pull`: warm RTF 0.64 (20.5s of
+audio synthesized in 13.1s), 24 kHz 16-bit mono WAV, 54 voices.
+
 ## Quickstart
 
 ```bash
